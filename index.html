@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, My Princess! ✨</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #ffe5ec, #ffc2d1);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+        .album-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            max-width: 90%;
+            width: 360px;
+        }
+        h1 {
+            color: #ff477e;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+        .slide {
+            display: none;
+            animation: fade 0.8s ease-in-out;
+        }
+        .pixel-art {
+            width: 100%;
+            height: auto;
+            max-height: 280px;
+            object-fit: contain;
+            border-radius: 12px;
+            border: 4px solid #fff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            image-rendering: pixelated;
+        }
+        .caption {
+            margin-top: 15px;
+            color: #4a4a4a;
+            font-size: 1rem;
+            line-height: 1.6;
+            min-height: 60px;
+        }
+        .nav-btn {
+            background-color: #ff477e;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin: 10px 5px 0 5px;
+            font-weight: bold;
+        }
+        .nav-btn:hover {
+            background-color: #ff0a54;
+        }
+        @keyframes fade {
+            from { opacity: 0.4; } 
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="album-container">
+        <h1>Happy Birthday Album 🎂</h1>
+
+        <div class="slide">
+            <img src="https://via.placeholder.com/300x300.png?text=Pixel+Art+1" class="pixel-art">
+            <p class="caption">ပထမဆုံး ဆွဲပေးဖြစ်ခဲ့တဲ့ Pixel Art လေး... 🌸</p>
+        </div>
+
+        <div class="slide">
+            <img src="https://via.placeholder.com/300x300.png?text=Pixel+Art+2" class="pixel-art">
+            <p class="caption">ဒီပုံလေး ဆွဲတုန်းက မင်းမျက်နှာလေးကို မြင်ယောင်နေမိတယ် 💖</p>
+        </div>
+
+        <div class="slide">
+            <img src="https://via.placeholder.com/300x300.png?text=Pixel+Art+3" class="pixel-art">
+            <p class="caption">မွေးနေ့ကစပြီး အမြဲတမ်း ပျော်ရွှင်ပါစေ မိန်းကလေးရေ ✨</p>
+        </div>
+
+        <div>
+            <button class="nav-btn" onclick="changeSlide(-1)">⏮️ ရှေ့သို့</button>
+            <button class="nav-btn" onclick="changeSlide(1)">နောက်သို့ ⏭️</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll(".slide");
+
+        function showSlide(index) {
+            if (index >= slides.length) { currentSlide = 0; } 
+            else if (index < 0) { currentSlide = slides.length - 1; } 
+            else { currentSlide = index; }
+            slides.forEach(slide => slide.style.display = "none");
+            slides[currentSlide].style.display = "block";
+        }
+
+        function changeSlide(step) { showSlide(currentSlide + step); }
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>
