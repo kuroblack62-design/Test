@@ -3,348 +3,257 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blow the Candle 🎂</title>
+    <title>For You 💌</title>
     <style>
-            body {
-        margin: 0;
-        padding: 0;
-        width: 100vw;
-        height: 100vh;
-        /* 🌹 အနီရောင်နှင်းဆီခင်း နောက်ခံပုံ Link */
-        background-image: url('https://cdn.discordapp.com/attachments/1462836222295674936/1527560285232169030/bf7ec085-4376-4ded-9556-4e0927d2a202.jpg?ex=6a5b1ae0&is=6a59c960&hm=19919dcbc188f7532cb214ad57425ecd0cfa504fb557d2b24d46236bd81482eb&');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        overflow: hidden;
-        font-family: sans-serif;
-    }
-
-
-        /* 🎂 ကိတ်မုန့် တစ်ထပ်ချင်း ကျလာမည့်ပုံစံ */
-        .cake-stage {
-            display: flex; flex-direction: column; align-items: center;
-        }
-        .cake-layer {
-            height: 30px; border-radius: 8px; margin-top: 2px;
-            transform: translateY(-800px); /* စခရင်အပြင် အပေါ်ဆုံးကနေ စကျမယ် */
-            animation: dropLayer 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-        }
-        /* တစ်ထပ်ချင်းစီရဲ့ အကျယ်၊ အရောင်နဲ့ ကျလာမည့် စက္ကန့် Delay အချိန်များ */
-        .layer-5 { width: 160px; background-color: #ff9f1c; animation-delay: 0.2s; }
-        .layer-4 { width: 130px; background-color: #ff595e; animation-delay: 0.5s; }
-        .layer-3 { width: 105px; background-color: #8ac926; animation-delay: 0.8s; }
-        .layer-2 { width: 80px;  background-color: #1982c4; animation-delay: 1.1s; }
-        .layer-1 { width: 55px;  background-color: #6a4c93; animation-delay: 1.4s; }
-
-        /* 🕯️ ဖယောင်းတိုင် နှင့် မီးတောက် */
-        .candle-container {
-            display: flex; flex-direction: column; align-items: center;
-            transform: translateY(-800px); animation: dropLayer 0.5s ease forwards; animation-delay: 1.7s;
-        }
-        .candle {
-            width: 8px; height: 35px; background: linear-gradient(#ffccd5, #fff); border-radius: 3px;
-        }
-        .flame {
-            width: 14px; height: 22px; background: #ffbc00; border-radius: 50% 50% 20% 20%;
-            box-shadow: 0 0 10px #ffbc00, 0 0 20px #ff4d4d;
-            animation: flicker 0.1s ease infinite alternate; 
-            transition: 0.4s ease; /* မီးငြိမ်းတဲ့အခါ ဖြည်းဖြည်းချင်း သေးသွားအောင် */
-        }
-        .instruction {
-            margin-top: 25px; color: #555; font-size: 1rem; font-weight: bold; text-align: center;
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
-        /* 🎬 Animations Keyframes */
-        @keyframes dropLayer { to { transform: translateY(0); } }
-        @keyframes flicker { 
-            0% { transform: scale(1) rotate(-2deg); } 
-            100% { transform: scale(1.1) rotate(2deg); } 
-        }
-              /* 📖 Album ဘောင် အပြင်အဆင် */
-        .album-container {
-            display: none;
-            background: white;
-            padding: 20px;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            width: 320px;
-            text-align: center;
-            animation: popIn 0.5s ease forwards;
-        }
-
-        /* မွေးနေ့စာတန်း အလှပြင်ခြင်း */
-        .Happy_Birthday {
-            font-size: 1.8rem;
-            color: #ff477e;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-
-        /* Slide စာမျက်နှာများကို အစပိုင်းတွင် အကုန်ဖျောက်ထားရန် */
-        .slide {
-            display: none;
-        }
-
-        /* ပုံများ အလှပြင်ခြင်း */
-        .album-img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            border-radius: 10px;
-        }
-
-        /* ရှင်းလင်းချက် စာသားပုံစံ */
-        .caption {
-            font-size: 0.95rem;
-            color: #555;
-            margin-top: 10px;
-            min-height: 40px;
-        }
-
-        /* ဘယ်ညာလှန်မည့် ခလုတ်များ */
-        .btn-container {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 15px;
-        }
-        .nav-btn {
-            background-color: #ff477e;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        /* ကြွတက်လာစေမည့် ကာတွန်း */
-        @keyframes popIn {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-        /* ✉️ စာအိတ် ဘောင်အပြင်အဆင် */
-        .envelope-wrapper {
-            height: 200px;
+        body {
+            background-color: #f7ebd3;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: 20px;
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 20px;
+            z-index: 2;
+        }
+
+        /* --- စာအိတ် ဒီဇိုင်း အပိုင်း --- */
+        #envelope-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease;
+            cursor: pointer;
         }
 
         .envelope {
             position: relative;
-            width: 240px;
-            height: 150px;
-            background-color: #f08080; /* စာအိတ်အောက်ခံရောင် */
-            border-bottom-left-radius: 6px;
-            border-bottom-right-radius: 6px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
-            perspective: 1000px;
+            width: 150px;
+            height: 100px;
+            background-color: #f3a8b1;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
-        /* စာအိတ်အဖုံး (အပေါ်က တြိဂံ) */
-        .flap {
+        .envelope::before {
+            content: "";
             position: absolute;
-            top: 0; left: 0; width: 0; height: 0;
-            border-left: 120px solid transparent;
-            border-right: 120px solid transparent;
-            border-top: 75px solid #f08080;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 75px solid transparent;
+            border-right: 75px solid transparent;
+            border-top: 60px solid #d16b7b;
             transform-origin: top;
-            transition: transform 0.4s ease, z-index 0.2s ease;
-            z-index: 3;
+            transition: transform 0.4s ease;
         }
 
-        /* စာအိတ်ကိုယ်ထည် */
-        .pocket {
-            position: absolute;
-            top: 0; left: 0; width: 0; height: 0;
-            border-left: 120px solid #f4978e;
-            border-right: 120px solid #f4978e;
-            border-bottom: 75px solid #f4978e;
-            border-top: 75px solid transparent;
-            border-radius: 6px;
-            z-index: 2;
-        }
-
-        /* စာအိတ်ထဲက စာရွက် */
-        .letter {
-            position: absolute;
-            bottom: 5px; left: 15px;
-            width: 210px;
-            height: 130px;
-            background-color: #fff;
-            border-radius: 4px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.5s ease;
+        .envelope.open::before {
+            transform: rotateX(180deg);
             z-index: 1;
         }
 
-        .letter-text {
-            padding: 10px;
+        .click-me-tag {
+            margin-top: 20px;
+            background-color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #d16b7b;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* --- 🌸 Screen အပြည့် ဝေဆာလာမယ့် ပန်းပွင့်ကြီးများ Effect --- */
+        .blooming-flower {
+            position: absolute;
+            pointer-events: none;
+            z-index: 99; /* အရှေ့ဆုံးက ပေါ်အောင် */
+            background-image: url('rose.png'); /* သင်ထည့်မယ့် ပန်းပွင့်ပုံ */
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0;
+            transform: scale(0.2) rotate(0deg);
+            animation: bloomAndFade 2.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        @keyframes bloomAndFade {
+            0% {
+                opacity: 0;
+                transform: scale(0.2) rotate(0deg);
+            }
+            30% {
+                opacity: 0.95; /* ပန်းပွင့်တွေ အပွင့်ကြီးကြီး ပေါ်လာချိန် */
+            }
+            70% {
+                opacity: 0.95;
+                transform: scale(1.1) rotate(15deg);
+            }
+            100% {
+                opacity: 0; /* ဖြည်းဖြည်းချင်း ပြန်ပျောက်သွားချိန် */
+                transform: scale(1.3) rotate(30deg);
+            }
+        }
+
+        /* --- ✉️ နောက်ကနေ ပေါ်လာမယ့် စာစောင်ဒီဇိုင်း --- */
+        #letter-section {
+            position: absolute;
+            width: 90%;
+            height: 70vh;
+            background: #fffdf9;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            padding: 25px;
+            display: none; /* အစမှာ ဖျောက်ထားမယ် */
+            flex-direction: column;
+            opacity: 0;
+            transition: opacity 1.2s ease;
+            border: 2px solid #f3e1ce;
+            z-index: 10;
+        }
+
+        .letter-title {
             text-align: center;
-            color: #444;
-        }
-        .letter-text h3 {
-            margin: 0 0 5px 0;
-            font-size: 1rem;
-            color: #ff477e;
-        }
-        .letter-text p {
-            font-size: 0.75rem;
-            line-height: 1.4;
-            margin: 0;
+            color: #d16b7b;
+            font-size: 22px;
+            margin-bottom: 15px;
+            font-weight: bold;
         }
 
-        /* 📱 ဖုန်းနဲ့ နှိပ်လိုက်တဲ့အခါ စာအိတ်ပွင့်ပြီး စာရွက်ထွက်လာမည့် စနစ် */
-        .envelope.open .flap {
-            transform: rotateX(180deg);
-            z-index: 0;
+        .letter-content {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding-right: 5px;
+            font-size: 15px;
+            line-height: 1.8;
+            color: #4a4a4a;
+            white-space: pre-line;
         }
 
-        .envelope.open .letter {
-            transform: translateY(-80px); /* စာရွက် အပေါ်ကို ကြွတက်လာမယ် */
-            z-index: 2;
-            height: 140px;
+        .letter-content::-webkit-scrollbar {
+            width: 4px;
         }
-      
+        .letter-content::-webkit-scrollbar-thumb {
+            background-color: #ff9ebb;
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body>
 
-    <div class="cake-stage" id="cake-screen">
-        <div class="candle-container">
-            <div class="flame" id="main-flame"></div>
-            <div class="candle"></div>
-        </div>
-        <div class="cake-layer layer-1"></div>
-        <div class="cake-layer layer-2"></div>
-        <div class="cake-layer layer-3"></div>
-        <div class="cake-layer layer-4"></div>
-        <div class="cake-layer layer-5"></div>
-        
-        <p class="instruction" id="status-text">ဖယောင်းတိုင်မီးကို မှုတ်လိုက်ပါ... 🌬️<br><span style="font-size:0.8rem; color:#888;">(သို့မဟုတ် ကိတ်မုန့်ကို နှိပ်ပါ)</span></p>
-    </div>
-    <!-- 📖 ကိတ်မုန့်ပြီးရင် ပေါ်လာမည့် Album အကွက် -->
-    <div class="album-container" id="album-screen">
-        <div class="Happy_Birthday">Happy Birthday, Chi! 🌸</div>
-        
-        <!-- Album စာမျက်နှာများ (Slide တစ်ခုချင်းစီ) -->
-        <div class="slide">
-            <img src="https://cdn.discordapp.com/attachments/1462836222295674936/1527538037389656094/IMG_20260716_220956.jpg?ex=6a5b0628&is=6a59b4a8&hm=13321d397d987f344b016e29fc28b9d2b12718e5fdd09c2f74b5394018449ce1&
-              " class="album-img">
-            <p class="caption">ပထမဆုံး ဆွဲပေးဖြစ်ခဲ့တဲ့ Pixel Art လေး... 🎨</p>
-        </div>
-        <div class="slide">
-            <img src="https://via.placeholder.com/300x250.png?text=Pixel+Art+2" class="album-img">
-            <p class="caption">ဒီပုံလေးဆွဲတုန်းက Chi မျက်နှာလေးကို မြင်ယောင်နေမိတယ် 💖</p>
-        </div>
-        <div class="slide">
-            <img src="https://via.placeholder.com/300x250.png?text=Pixel+Art+3" class="album-img">
-            <p class="caption">မွေးနေ့ကစပြီး အမြဲတမ်း ပျော်ရွှင်ပါစေ မိန်းကလေးရေ ✨</p>
-        </div>
-        <!-- Slide ၄ (စာအိတ်ပါဝင်သည့် နောက်ဆုံးစာမျက်နှာ) -->
-        <div class="slide">
-            <p class="caption" style="font-size: 1.1rem; color: #ff477e; font-weight: bold; margin-bottom: 20px;">
-                Chi အတွက် မွေးနေ့ဆုတောင်းစာလွှာလေးပါ... ✉️
-            </p>
-            
-            <!-- စာအိတ်တည်ဆောက်ပုံ -->
-            <div class="envelope-wrapper">
-                <div class="envelope" onclick="this.classList.toggle('open')">
-                    <div class="flap"></div>
-                    <div class="pocket"></div>
-                    <div class="letter">
-                        <div class="letter-text">
-                            <h3>Happy Birthday! 🎂</h3>
-                            <p>ဒီနေ့မွေးနေ့ကစပြီး နောင်နှစ်ပေါင်းများစွာအထိ စိတ်ချမ်းသာ၊ ကိုယ်ကျန်းမာနဲ့ လိုအင်ဆန္ဒတွေ ပြည့်ဝပါစေ Chi ရေ... 🌸</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <p style="font-size: 0.8rem; color: #aaa; margin-top: 10px;">(စာအိတ်လေးကို နှိပ်ပြီး ဖွင့်ဖတ်ကြည့်ပါ)</p>
-        </div>
-      
-        <!-- စာမျက်နှာ လှန်မည့် ခလုတ်များ -->
-        <div class="btn-container">
-            <button class="nav-btn" onclick="changeSlide(-1)">⏮️ ရှေ့သို့</button>
-            <button class="nav-btn" onclick="changeSlide(1)">နောက်သို့ ⏭️</button>
-        </div>
-    </div>
-  
-    <script>
-        const flame = document.getElementById("main-flame");
-        const statusText = document.getElementById("status-text");
-        const cakeScreen = document.getElementById("cake-screen");
-        const albumScreen = document.getElementById("album-screen");
-        const slides = document.querySelectorAll(".slide");
-        let currentSlide = 0;
-              function showSlide(index) {
-            if (index >= slides.length) { currentSlide = 0; }
-            else if (index < 0) { currentSlide = slides.length - 1; }
-            else { currentSlide = index; }
+    <!-- 🎵 နောက်ခံသီချင်းဖိုင် (မလိုချင်ရင် ဖျက်ပစ်လို့ရပါတယ်) -->
+    <audio id="bg-music" src="hbd.mp3" loop></audio>
 
-            slides.forEach(s => s.style.display = "none");
-            slides[currentSlide].style.display = "block";
-        }
+    <div class="container">
 
-        function changeSlide(step) {
-            showSlide(currentSlide + step);
-        }
+        <!-- စာအိတ် အပိုင်း -->
+        <div id="envelope-section" onclick="openEnvelope()">
+            <div class="envelope" id="envelope-box"></div>
+            <p class="click-me-tag" id="click-text">ခြည် အတွက် စာလေး ရှိတယ် ✉️</p>
+        </div>
 
-        // 🌬️ နည်းလမ်း (၁) - မိုက်ခရိုဖုန်းထဲ လေမှုတ်သံကို နားထောင်သည့်စနစ်
-        navigator.mediaDevices.getUserMedia({ audio: true })
-        .then(stream => {
-            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            const analyser = audioContext.createAnalyser();
-            const microphone = audioContext.createMediaStreamSource(stream);
-            const javascriptNode = audioContext.createScriptProcessor(2048, 1, 1);
+        <!-- နောက်မှ ပေါ်လာမယ့် စာစောင် အပိုင်း -->
+        <div id="letter-section">
+            <div class="letter-title">To ခြည် 💌</div>
+            <div class="letter-content">
+                Dear ခြည်,
 
-            analyser.fftSize = 1024;
-            microphone.connect(analyser);
-            analyser.connect(javascriptNode);
-            javascriptNode.connect(audioContext.destination);
-
-            javascriptNode.onaudioprocess = function() {
-                const array = new Uint8Array(analyser.frequencyBinCount);
-                analyser.getByteFrequencyData(array);
-                let values = 0;
-                for (let i = 0; i < array.length; i++) { values += array[i]; }
-                let average = values / array.length;
+                ဒီနေ့မှာ ကျရောက်တဲ့ မွေးနေ့ကနေစပြီး နောင်နှစ်ပေါင်းများစွာတိုင်အောင် ပျော်ရွှင်မှုတွေပဲ ပိုင်ဆိုင်နိုင်ပါစေ။ 
                 
-                // အသံ သို့မဟုတ် လေမှုတ်သံ ကျယ်လာရင် မီးငြိမ်းမယ်
-                if (average > 45) { 
-                    blowOutCandle();
-                    stream.getTracks().forEach(track => track.stop()); // မိုက်ခရိုဖုန်း ပြန်ပိတ်မယ်
-                }
-            };
-        }).catch(err => {
-            console.log("မိုက်ခရိုဖုန်း ခွင့်ပြုချက် မရခဲ့ပါ");
-        });
+                မင်းက ငါ့ဘဝထဲကို ရောက်လာကတည်းက အရာရာဟာ ပိုပြီးတောက်ပလာခဲ့တယ်။ မင်းရဲ့ အပြုံးတွေ၊ မင်းရဲ့ စကားသံတွေက ငါ့အတွက် အမြဲတမ်း ခွန်အားဖြစ်စေခဲ့တာပါ။
 
-        // 📱 နည်းလမ်း (၂) - မိုက်ခရိုဖုန်း အလုပ်မလုပ်ရင် လက်နဲ့နှိပ်ပြီး ငြိမ်းလို့ရမည့် Backup စနစ်
-        document.getElementById("cake-screen").addEventListener("click", blowOutCandle);
+                တစ်ခါတလေ စိတ်ညစ်စရာတွေ ကြုံလာရရင်လည်း စိတ်မပျက်ပါနဲ့၊ မင်းအနားမှာ အမြဲတမ်း အားပေးကူညီမယ့် ငါရှိနေတယ်ဆိုတာ မမေ့ပါနဲ့နော်။
 
-        // 🔥 မီးငြိမ်းသွားစေမည့် လုပ်ဆောင်ချက်
-        function blowOutCandle() {
-    flame.style.transform = "scale(0)";
-    flame.style.opacity = "0";
-    statusText.innerHTML = "<b style='color:#ff477e;'>မီးငြိမ်းသွားပါပြီ! ❤️</b>";
+                ဒီထက်မက အောင်မြင်တဲ့သူ၊ လူချစ်လူခင်ပေါတဲ့သူ၊ စိတ်ချမ်းသာ ကိုယ်ကျန်းမာနဲ့ လိုအင်ဆန္ဒတွေ ပြည့်ဝတဲ့သူ ဖြစ်ပါစေလို့ ဆုတောင်းပေးလိုက်ပါတယ်။
 
-    // 🌟 မီးငြိမ်းပြီး ၁.၅ စက္ကန့်အကြာတွင် ကိတ်မုန့်ဖျောက်၍ Album ဖွင့်မည်
-    setTimeout(function() {
-        cakeScreen.style.display = "none";
-        albumScreen.style.display = "block";
-        showSlide(0);
-    }, 1500);
-}
+                Happy Birthday to You! ပါ ခြည်ရေ 🎉🎂✨
+                
+                With tons of love,
+                [မင်းရဲ့ နာမည်]
+            </div>
+        </div>
 
+    </div>
+
+    <script>
+        const envelopeSection = document.getElementById('envelope-section');
+        const envelopeBox = document.getElementById('envelope-box');
+        const clickText = document.getElementById('click-text');
+        const letterSection = document.getElementById('letter-section');
+        const music = document.getElementById('bg-music');
+
+        // 🌸 ပန်းပွင့်တွေ မျက်နှာပြင်အပြည့် ဝေဆာပေါ်လာစေမယ့် Function
+        function spawnBigFlowers() {
+            // ပန်းပွင့်ရေ ၃၅ ပွင့်လောက်ကို Screen နေရာစုံမှာ ဖြန့်ပြီး ထုတ်ပေးမှာပါ
+            for (let i = 0; i < 35; i++) {
+                setTimeout(() => {
+                    const flower = document.createElement('div');
+                    flower.classList.add('blooming-flower');
+                    
+                    // ပန်းပွင့်တစ်ခုချင်းစီရဲ့ အရွယ်အစားကို မတူအောင် (Random) ထားတာပါ (ဗီဒီယိုထဲကအတိုင်း)
+                    const size = Math.floor(Math.random() * 150) + 100; // 100px မှ 250px ကြား
+                    flower.style.width = size + 'px';
+                    flower.style.height = size + 'px';
+                    
+                    // မျက်နှာပြင်ပေါ်က နေရာအနှံ့ကို တွက်ချက်တာပါ
+                    flower.style.left = Math.random() * 90 + '%';
+                    flower.style.top = Math.random() * 90 + '%';
+                    
+                    document.body.appendChild(flower);
+                    
+                    // Animation ပြပြီးရင် Element ကို မလေးအောင် ပြန်ဖျက်မယ်
+                    setTimeout(() => { flower.remove(); }, 2500);
+                }, i * 60); // တစ်ပွင့်နဲ့တစ်ပွင့် ပေါ်လာတဲ့အချိန် အနည်းငယ်စီ စောင်းထားတာပါ
+            }
+        }
+
+        // ✉️ စာအိတ်ကို နှိပ်လိုက်ရင် အလုပ်လုပ်မယ့်အပိုင်း
+        function openEnvelope() {
+            // စာအိတ် အဖုံး ပွင့်သွားမယ်
+            envelopeBox.classList.add('open');
+            clickText.style.display = 'none';
+            
+            // သီချင်း ဖွင့်မယ်
+            music.play().catch(error => { console.log("Audio play blocked"); });
+            
+            // ၁ စက္ကန့်နေရင် စာအိတ် ပျောက်ပြီး ပန်းပွင့်ကြီးတွေ စပေါ်မယ်
+            setTimeout(() => {
+                envelopeSection.style.display = 'none';
+                
+                // 🌸 ပန်းပွင့်တွေ တစ်ပြင်လုံး ဝေဆာလာမယ်
+                spawnBigFlowers();
+                
+                // ပန်းပွင့်တွေ ပေါ်ပြီး (၂ စက္ကန့်ခွဲ) နေရင် စာစောင်လေး အလယ်မှာ ထွက်လာမယ်
+                setTimeout(() => {
+                    letterSection.style.display = 'flex';
+                    setTimeout(() => {
+                        letterSection.style.opacity = '1';
+                    }, 50);
+                }, 2000);
+
+            }, 1000);
+        }
     </script>
 </body>
 </html>
